@@ -1,28 +1,32 @@
 import React from "react";
-
-import FullCalendar from "@fullcalendar/react";
+import FullCalendar, { formatDate } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-class EventCalendar extends React.Component {
+export default class EventCalendar extends React.Component {
+  state = {
+    weekendsVisible: true,
+    currentEvents: [],
+  };
+
   render() {
     return (
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        dateClick={this.handleDateClick}
-        events={[
-          { title: "event 1", date: "2020-06-01" },
-          { title: "event 2", date: "2020-06-02" },
-        ]}
-      />
+      <div>
+        <div>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }} //ajout d'affichage des 3 types (jour, mois, semaine)
+            initialView="dayGridMonth"
+            selectable={true}
+            dayMaxEvents={true} //le max des reunion a afficher dans une case
+          />
+        </div>
+      </div>
     );
   }
-
-  handleDateClick = (arg: any) => {
-    // lorsque une date est cliquee
-    alert(arg.dateStr);
-  };
 }
-
-export default EventCalendar;
