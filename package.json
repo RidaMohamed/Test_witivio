@@ -6,6 +6,7 @@
     "@fluentui/react": "^7.121.4",
     "@fluentui/react-northstar": "^0.50.0",
     "@fullcalendar/daygrid": "^5.0.1",
+    "@fullcalendar/interaction": "^5.0.0",
     "@fullcalendar/react": "^5.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
