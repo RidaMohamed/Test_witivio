@@ -1,8 +1,10 @@
-import React from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import * as React from "react";
+
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+
 import { INITIAL_REUNION, createEventId } from "./reunion";
 
 export default class EventCalendar extends React.Component {
@@ -13,8 +15,8 @@ export default class EventCalendar extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className="demo-app">
+        <div className="demo-app-main">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             headerToolbar={{
@@ -26,7 +28,7 @@ export default class EventCalendar extends React.Component {
             editable={true} // pour changer les
             selectable={true}
             dayMaxEvents={true} //le max des reunion a afficher dans une case
-            initialEvents={INITIAL_REUNION} //importer le modele de reunion pour le courant jour
+            initialEvents={INITIAL_REUNION} //importer le modele de reunion pour le courant jour par defaut
             select={this.CliquerDate}
             eventContent={renderEventContent} //
             eventsSet={this.handleEvents}
@@ -38,6 +40,7 @@ export default class EventCalendar extends React.Component {
 
   CliquerDate = (selectInfo: any) => {
     //creation de reunion
+
     let title = prompt("Entrez le titre de votre reunion");
     let calendarApi = selectInfo.view.calendar;
 

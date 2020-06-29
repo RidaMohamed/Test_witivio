@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fluentui/code-sandbox": "^0.50.0",
     "@fluentui/react": "^7.121.4",
     "@fluentui/react-northstar": "^0.50.0",
     "@fullcalendar/daygrid": "^5.0.1",
