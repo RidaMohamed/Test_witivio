@@ -13,6 +13,7 @@ import {
   mergeStyleSets,
   FontWeights,
 } from "office-ui-fabric-react";
+
 import { INITIAL_REUNION, createEventId } from "./reunion";
 
 const cancelIcon: IIconProps = { iconName: "Cancel" };
@@ -23,6 +24,8 @@ export default class EventCalendar extends React.Component {
     showModal: true,
     hideModal: false,
     isModalOpen: false,
+    Event: undefined,
+    Titre: "",
     currentEvents: [],
   };
 
@@ -38,6 +41,17 @@ export default class EventCalendar extends React.Component {
     });
   };
 
+  // popup info
+  onChange = (e: any) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  validerEvent = () => {
+    this.toggle();
+  };
+
   render() {
     return (
       <div className="demo-app">
@@ -49,7 +63,7 @@ export default class EventCalendar extends React.Component {
             containerClassName={contentStyles.container}
           >
             <div className={contentStyles.header}>
-              <span>Lorem Ipsum</span>
+              <span>Ajout la reunion</span>
               <IconButton
                 styles={iconButtonStyles}
                 iconProps={cancelIcon}
@@ -58,21 +72,25 @@ export default class EventCalendar extends React.Component {
               />
             </div>
             <div className={contentStyles.body}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas lorem nulla, malesuada ut sagittis sit amet, vulputate
-                in leo. Maecenas vulputate congue sapien eu tincidunt. Etiam eu
-                sem turpis. Fusce tempor sagittis nunc, ut interdum ipsum
-                vestibulum non. Proin dolor elit, aliquam eget tincidunt non,
-                vestibulum ut turpis. In hac habitasse platea dictumst. In a
-                odio eget enim porttitor maximus. Aliquam nulla nibh,
-                ullamcorper aliquam placerat eu, viverra et dui. Phasellus ex
-                lectus, maximus in mollis ac, luctus vel eros. Vivamus ultrices,
-                turpis sed malesuada gravida, eros ipsum venenatis elit, et
-                volutpat eros dui et ante. Quisque ultricies mi nec leo
-                ultricies mollis. Vivamus egestas volutpat lacinia. Quisque
-                pharetra eleifend efficitur.
-              </p>
+              <label>Titre de reunion</label>
+              <input type="text" name="Titre" onChange={this.onChange} />
+              <label>Date de debut</label>
+              <input
+                type="date"
+                name="Date de debut"
+                onChange={this.onChange}
+              />
+              <label>Heure de debut</label>
+              <input
+                type="time"
+                name="Heure de debut"
+                onChange={this.onChange}
+              />
+              <label>Date de fin</label>
+              <input type="date" name="Date de fin " onChange={this.onChange} />
+              <label>Heure de fin</label>
+              <input type="time" name="Heure de fin" onChange={this.onChange} />
+              <button onClick={this.validerEvent}>here</button>
             </div>
           </Modal>
 
@@ -99,11 +117,12 @@ export default class EventCalendar extends React.Component {
 
   CliquerDate = (selectInfo: any) => {
     //creation de reunion
-    this.openModel();
-    let title = true;
+    //this.openModel();
+    let title = prompt("Titre de reunion");
+
     let calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // supprimer la date selectionner
+    calendarApi.unselect();
 
     if (title) {
       calendarApi.addEvent({
@@ -138,7 +157,7 @@ function renderEventContent(eventInfo: any) {
 const theme = getTheme();
 const contentStyles = mergeStyleSets({
   container: {
-    display: "flex",
+    display: "blocks",
     flexFlow: "column nowrap",
     alignItems: "stretch",
   },
