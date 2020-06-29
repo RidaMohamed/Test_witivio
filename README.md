@@ -6,7 +6,7 @@ Test technique de Witivio.
 
 Application web de planification des réunions.
 
-## Resume
+## Résumé
 
 - Affichage de calendrier, naviguer entre (jours mois semaine)
 
